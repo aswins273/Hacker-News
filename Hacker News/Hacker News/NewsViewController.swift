@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  Hacker News
 //
-//  Created by S, Aswin (623-Extern) on 12/09/21.
+//  Created by S, Aswin on 12/09/21.
 //
 
 import UIKit
@@ -102,6 +102,23 @@ extension NewsViewController: UITableViewDataSource {
     }
 }
 
+// MARK: Tableview Datasource Methods
+extension NewsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let news = newsDetails[indexPath.row]
+        guard let url = news.url else {
+            return
+        }
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let newsDetailVC = storyboard.instantiateViewController(withIdentifier: "NewsDetailViewController") as! NewsDetailViewController
+        newsDetailVC.newsUrl = url
+        guard let navigationController = self.navigationController else {
+            return
+        }
+        navigationController.pushViewController(newsDetailVC, animated: true)
+    }
+}
+
 // MARK: SearchBar Delegate Methods
 extension NewsViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -123,7 +140,7 @@ extension NewsViewController: UISearchBarDelegate {
 }
 
 // MARK: Pagination Methods
-extension NewsViewController: UITableViewDelegate {
+extension NewsViewController {
     func loadMoreItemsForList(){
         currentPage += 1
         getNewsDetails()

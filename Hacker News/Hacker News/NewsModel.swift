@@ -2,7 +2,7 @@
 //  NewsModel.swift
 //  Hacker News
 //
-//  Created by S, Aswin (623-Extern) on 12/09/21.
+//  Created by S, Aswin on 12/09/21.
 //
 
 import Foundation
