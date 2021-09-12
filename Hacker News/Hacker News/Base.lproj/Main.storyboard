@@ -19,18 +19,22 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GXq-cW-lAm">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
-                                    <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Xti-Gm-ey7">
+                                    <searchBar contentMode="redraw" placeholder="Enter search text" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xti-Gm-ey7">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="51"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                        <scopeButtonTitles>
+                                            <string>Title</string>
+                                            <string>Title</string>
+                                        </scopeButtonTitles>
                                         <connections>
                                             <outlet property="delegate" destination="BYZ-38-t0r" id="Occ-jj-RCN"/>
                                         </connections>
                                     </searchBar>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AON-B7-jlS">
-                                        <rect key="frame" x="0.0" y="69" width="414" height="705"/>
+                                        <rect key="frame" x="0.0" y="51" width="414" height="723"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <view key="tableFooterView" contentMode="scaleToFill" id="pVY-fi-93j">
-                                            <rect key="frame" x="0.0" y="124.00000034679067" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="142.00000034679067" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="zEK-Yw-f3P">
@@ -44,11 +48,11 @@
                                             </constraints>
                                         </view>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="newstableviewcell" rowHeight="75" id="aNU-xy-oI0" customClass="NewsTableViewCell" customModule="Hacker_News" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="24.5" width="414" height="75"/>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="newstableviewcell" rowHeight="93" id="aNU-xy-oI0" customClass="NewsTableViewCell" customModule="Hacker_News" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="24.5" width="414" height="93"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aNU-xy-oI0" id="5cH-Fx-aSv">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="75"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="93"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="News" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aHm-WW-JRB">
@@ -57,27 +61,28 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IxL-RP-40Q">
-                                                            <rect key="frame" x="15" y="42.5" width="0.0" height="23.5"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="751" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IxL-RP-40Q">
+                                                            <rect key="frame" x="15" y="45.5" width="372" height="38.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9c8-Ga-HcZ">
-                                                            <rect key="frame" x="399" y="54.5" width="0.0" height="0.0"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9c8-Ga-HcZ">
+                                                            <rect key="frame" x="399" y="45.5" width="0.0" height="0.0"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstItem="IxL-RP-40Q" firstAttribute="top" secondItem="aHm-WW-JRB" secondAttribute="bottom" constant="12" id="2qC-MF-Zg0"/>
+                                                        <constraint firstItem="9c8-Ga-HcZ" firstAttribute="leading" secondItem="IxL-RP-40Q" secondAttribute="trailing" constant="12" id="59m-rL-ssU"/>
                                                         <constraint firstItem="aHm-WW-JRB" firstAttribute="leading" secondItem="5cH-Fx-aSv" secondAttribute="leading" constant="15" id="JMN-cJ-P4f"/>
                                                         <constraint firstItem="IxL-RP-40Q" firstAttribute="leading" secondItem="5cH-Fx-aSv" secondAttribute="leading" constant="15" id="Mcg-GD-O2s"/>
                                                         <constraint firstAttribute="trailing" secondItem="aHm-WW-JRB" secondAttribute="trailing" constant="15" id="MgS-Rc-wE3"/>
-                                                        <constraint firstItem="9c8-Ga-HcZ" firstAttribute="centerY" secondItem="IxL-RP-40Q" secondAttribute="centerY" id="Wgi-A5-yzq"/>
                                                         <constraint firstAttribute="bottom" secondItem="IxL-RP-40Q" secondAttribute="bottom" constant="9" id="Wy5-gD-O9Q"/>
                                                         <constraint firstItem="aHm-WW-JRB" firstAttribute="top" secondItem="5cH-Fx-aSv" secondAttribute="top" constant="9" id="cJz-jW-gLC"/>
+                                                        <constraint firstItem="9c8-Ga-HcZ" firstAttribute="top" secondItem="aHm-WW-JRB" secondAttribute="bottom" constant="15" id="hfC-4O-biB"/>
+                                                        <constraint firstItem="IxL-RP-40Q" firstAttribute="top" secondItem="9c8-Ga-HcZ" secondAttribute="top" id="quc-Ev-99M"/>
                                                         <constraint firstAttribute="trailing" secondItem="9c8-Ga-HcZ" secondAttribute="trailing" constant="15" id="ueC-sc-DrA"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
@@ -101,7 +106,7 @@
                                     <constraint firstItem="Xti-Gm-ey7" firstAttribute="leading" secondItem="GXq-cW-lAm" secondAttribute="leading" id="Cvt-RN-U72"/>
                                     <constraint firstItem="Xti-Gm-ey7" firstAttribute="top" secondItem="GXq-cW-lAm" secondAttribute="top" id="Llp-5F-C67"/>
                                     <constraint firstAttribute="bottom" secondItem="AON-B7-jlS" secondAttribute="bottom" id="WkA-gp-J7p"/>
-                                    <constraint firstItem="AON-B7-jlS" firstAttribute="top" secondItem="Xti-Gm-ey7" secondAttribute="bottom" constant="18" id="ejZ-DB-RTW"/>
+                                    <constraint firstItem="AON-B7-jlS" firstAttribute="top" secondItem="Xti-Gm-ey7" secondAttribute="bottom" id="ejZ-DB-RTW"/>
                                     <constraint firstItem="AON-B7-jlS" firstAttribute="leading" secondItem="GXq-cW-lAm" secondAttribute="leading" id="oSv-Ry-5Sm"/>
                                 </constraints>
                             </view>
@@ -138,19 +143,24 @@
                                 <subviews>
                                     <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R5I-0w-fc4">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
-                                        <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <wkWebViewConfiguration key="configuration">
                                             <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                             <wkPreferences key="preferences"/>
                                         </wkWebViewConfiguration>
                                     </wkWebView>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="yqA-wP-Jxh">
+                                        <rect key="frame" x="188.5" y="390.5" width="37" height="37"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="R5I-0w-fc4" secondAttribute="bottom" id="Aks-T1-Es7"/>
+                                    <constraint firstItem="yqA-wP-Jxh" firstAttribute="centerX" secondItem="1pj-xx-jJ4" secondAttribute="centerX" id="H35-tJ-Xqx"/>
                                     <constraint firstItem="R5I-0w-fc4" firstAttribute="top" secondItem="1pj-xx-jJ4" secondAttribute="top" id="OXl-eD-EGR"/>
                                     <constraint firstAttribute="trailing" secondItem="R5I-0w-fc4" secondAttribute="trailing" id="dSM-2n-0bZ"/>
                                     <constraint firstItem="R5I-0w-fc4" firstAttribute="leading" secondItem="1pj-xx-jJ4" secondAttribute="leading" id="fb3-GG-2a0"/>
+                                    <constraint firstItem="yqA-wP-Jxh" firstAttribute="centerY" secondItem="1pj-xx-jJ4" secondAttribute="centerY" id="t46-Eq-VGe"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -164,6 +174,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="yqA-wP-Jxh" id="N4s-MV-HeB"/>
                         <outlet property="webView" destination="R5I-0w-fc4" id="LoB-od-3zU"/>
                     </connections>
                 </viewController>

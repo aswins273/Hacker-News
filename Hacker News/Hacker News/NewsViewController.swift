@@ -22,6 +22,7 @@ class NewsViewController: UIViewController {
         getNewsDetails()
         newsTableView.rowHeight = UITableView.automaticDimension
         newsTableView.estimatedRowHeight = 75
+        self.title = "NEWS"
     }
 }
 
@@ -125,17 +126,23 @@ extension NewsViewController: UISearchBarDelegate {
         NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.reload(_:)), object: searchBar)
         perform(#selector(self.reload(_:)), with: searchBar, afterDelay: 0.75)
     }
-    
     @objc func reload(_ searchBar: UISearchBar) {
         guard let query = searchBar.text, query.trimmingCharacters(in: .whitespaces) != "", query.count >= 3 else {
-            searchText = nil
-            currentPage = 0
-            getNewsDetails()
             return
         }
         currentPage = 0
         searchText = query
         getNewsDetails()
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchText = nil
+        searchBar.text = ""
+        currentPage = 0
+        getNewsDetails()
+        searchBar.resignFirstResponder()
+    }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
 }
 
