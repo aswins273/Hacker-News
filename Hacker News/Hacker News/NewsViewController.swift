@@ -10,14 +10,66 @@ import UIKit
 class NewsViewController: UIViewController {
 
     @IBOutlet var newsTableView: UITableView!
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
+
     var newsDetails = [NewsContent]()
     var searchText : String?
+    var currentPage : Int = 0
+    var isLoadingList : Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         getNewsDetails()
         newsTableView.rowHeight = UITableView.automaticDimension
         newsTableView.estimatedRowHeight = 75
+    }
+}
+
+//MARK: News api call
+extension NewsViewController {
+    func getNewsDetails() {
+        let session = URLSession.shared
+        var urlString = "https://hn.algolia.com/api/v1/search?hitsPerPage=\((currentPage + 1) * 20)"
+        if let text = searchText {
+            urlString += "&query=\(text)"
+        }
+        print(urlString)
+        guard let url = URL(string: urlString) else {
+            return
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        activityIndicator.startAnimating()
+        let task = session.dataTask(with: request) { [weak self] (data, response, error) in
+            let httpResponse = response as? HTTPURLResponse
+            if let statusCode = httpResponse?.statusCode {
+                if (statusCode == 200) {
+                    self?.parseData(data!)
+                }
+            }
+            if let errorStatus = error {
+                print(errorStatus)
+            }
+        }
+        task.resume()
+    }
+    func parseData(_ data : Data){
+        do{
+            let decoder = JSONDecoder()
+            let response = try decoder.decode(News.self, from: data)
+            newsDetails.removeAll()
+            newsDetails = response.hits
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.isLoadingList = false
+                self.activityIndicator.stopAnimating()
+                self.newsTableView.reloadData()
+            }
+        }
+        catch{
+            print(error)
+        }
     }
 }
 
@@ -60,53 +112,26 @@ extension NewsViewController: UISearchBarDelegate {
     @objc func reload(_ searchBar: UISearchBar) {
         guard let query = searchBar.text, query.trimmingCharacters(in: .whitespaces) != "", query.count >= 3 else {
             searchText = nil
+            currentPage = 0
             getNewsDetails()
             return
         }
+        currentPage = 0
         searchText = query
         getNewsDetails()
     }
 }
-//MARK: News api call
-extension NewsViewController {
-    func getNewsDetails() {
-        let session = URLSession.shared
-        var urlString = "https://hn.algolia.com/api/v1/search?"
-        if let text = searchText {
-            urlString += "query=\(text)"
-        }
-        guard let url = URL(string: urlString) else {
-            return
-        }
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        let task = session.dataTask(with: request) { [weak self] (data, response, error) in
-            let httpResponse = response as? HTTPURLResponse
-            if let statusCode = httpResponse?.statusCode {
-                if (statusCode == 200) {
-                    self?.parseData(data!)
-                }
-            }
-            if let errorStatus = error {
-                print(errorStatus)
-            }
-        }
-        task.resume()
+
+// MARK: Pagination Methods
+extension NewsViewController: UITableViewDelegate {
+    func loadMoreItemsForList(){
+        currentPage += 1
+        getNewsDetails()
     }
-    func parseData(_ data : Data){
-        do{
-            let decoder = JSONDecoder()
-            let response = try decoder.decode(News.self, from: data)
-            newsDetails.removeAll()
-            newsDetails = response.hits
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                self.newsTableView.reloadData()
-            }
-        }
-        catch{
-            print(error)
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if (((scrollView.contentOffset.y + scrollView.frame.size.height) > scrollView.contentSize.height ) && !isLoadingList){
+            self.isLoadingList = true
+            self.loadMoreItemsForList()
         }
     }
 }
