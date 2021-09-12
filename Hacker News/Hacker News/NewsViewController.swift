@@ -11,6 +11,7 @@ class NewsViewController: UIViewController {
 
     @IBOutlet var newsTableView: UITableView!
     var newsDetails = [NewsContent]()
+    var searchText : String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,11 +50,31 @@ extension NewsViewController: UITableViewDataSource {
     }
 }
 
+// MARK: SearchBar Delegate Methods
+extension NewsViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.reload(_:)), object: searchBar)
+        perform(#selector(self.reload(_:)), with: searchBar, afterDelay: 0.75)
+    }
+    
+    @objc func reload(_ searchBar: UISearchBar) {
+        guard let query = searchBar.text, query.trimmingCharacters(in: .whitespaces) != "", query.count >= 3 else {
+            searchText = nil
+            getNewsDetails()
+            return
+        }
+        searchText = query
+        getNewsDetails()
+    }
+}
 //MARK: News api call
 extension NewsViewController {
     func getNewsDetails() {
         let session = URLSession.shared
-        let urlString = "https://hn.algolia.com/api/v1/search"
+        var urlString = "https://hn.algolia.com/api/v1/search?"
+        if let text = searchText {
+            urlString += "query=\(text)"
+        }
         guard let url = URL(string: urlString) else {
             return
         }
