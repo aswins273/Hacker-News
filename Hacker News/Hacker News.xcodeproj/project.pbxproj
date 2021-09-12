@@ -14,6 +14,7 @@
 		EA64BA4F26ED95F000CF3308 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA64BA4E26ED95F000CF3308 /* Assets.xcassets */; };
 		EA64BA5226ED95F000CF3308 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA64BA5026ED95F000CF3308 /* LaunchScreen.storyboard */; };
 		EA64BA5A26ED9BEB00CF3308 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA64BA5926ED9BEB00CF3308 /* NewsTableViewCell.swift */; };
+		EA64BA5C26ED9E2400CF3308 /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA64BA5B26ED9E2300CF3308 /* NewsModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		EA64BA5126ED95F000CF3308 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EA64BA5326ED95F000CF3308 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA64BA5926ED9BEB00CF3308 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
+		EA64BA5B26ED9E2300CF3308 /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				EA64BA4526ED95E900CF3308 /* AppDelegate.swift */,
 				EA64BA4726ED95E900CF3308 /* SceneDelegate.swift */,
 				EA64BA4926ED95E900CF3308 /* NewsViewController.swift */,
+				EA64BA5B26ED9E2300CF3308 /* NewsModel.swift */,
 				EA64BA4B26ED95E900CF3308 /* Main.storyboard */,
 				EA64BA5926ED9BEB00CF3308 /* NewsTableViewCell.swift */,
 				EA64BA4E26ED95F000CF3308 /* Assets.xcassets */,
@@ -144,6 +147,7 @@
 				EA64BA4626ED95E900CF3308 /* AppDelegate.swift in Sources */,
 				EA64BA5A26ED9BEB00CF3308 /* NewsTableViewCell.swift in Sources */,
 				EA64BA4826ED95E900CF3308 /* SceneDelegate.swift in Sources */,
+				EA64BA5C26ED9E2400CF3308 /* NewsModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
